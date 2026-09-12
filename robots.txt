@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://eshipley11.com/sitemap.xml
