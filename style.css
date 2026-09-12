@@ -13,6 +13,13 @@ body {
   margin: 0;
 }
 
+/* PAGE WRAPPER — FIXES DESKTOP WIDTH */
+.page {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
 /* NAVIGATION */
 .navbar {
   display: flex;
@@ -74,17 +81,34 @@ body {
   }
 }
 
+/* DESKTOP NAV FIX */
+@media (min-width: 801px) {
+  .nav-links {
+    display: flex !important;
+    position: static;
+    flex-direction: row;
+    width: auto;
+    padding: 0;
+  }
+
+  .nav-toggle-label {
+    display: none !important;
+  }
+}
+
 /* HERO */
 .hero {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  padding: 2rem;
+  padding: 2rem 0;
   gap: 2rem;
 }
 
 .hero-photo img {
   width: 100%;
+  height: auto;
   border-radius: 12px;
+  object-fit: cover;
 }
 
 @media (max-width: 800px) {
@@ -95,7 +119,7 @@ body {
 
 /* SECTIONS */
 section {
-  padding: 2rem 1rem;
+  padding: 2rem 0;
 }
 
 h2 {
@@ -144,13 +168,14 @@ h2 {
 /* GALLERY */
 .gallery-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
   gap: 1rem;
 }
 
 .gallery-item {
   width: 100%;
   border-radius: 12px;
+  object-fit: cover;
 }
 
 /* CONTACT */
