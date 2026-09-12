@@ -1,132 +1,822 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Emma Shipley | Flag Football Recruiting</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8" />
+  <title>Emma Shipley | Flag Football</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <style>
+    :root {
+      --bg: #0b1020;
+      --bg-alt: #141a2b;
+      --accent: #1e88ff;
+      --accent-soft: #1e88ff22;
+      --text: #ffffff;
+      --muted: #b7c0d9;
+      --danger: #ffb300;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    .page {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 1.5rem 3rem;
+    }
+
+    header.hero {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 2rem;
+      padding: 2.5rem 0 2rem;
+      border-bottom: 1px solid #222a3d;
+    }
+
+    @media (max-width: 800px) {
+      header.hero {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .hero-text h1 {
+      font-size: clamp(2.4rem, 4vw, 3.2rem);
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .hero-text h1 span {
+      color: var(--accent);
+    }
+
+    .hero-sub {
+      margin-top: 0.5rem;
+      font-size: 0.95rem;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .hero-meta {
+      margin-top: 1rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 0.25rem 0.75rem;
+      background: #1b2236;
+      border: 1px solid #252f47;
+    }
+
+    .hero-actions {
+      margin-top: 1.5rem;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.75rem;
+      align-items: center;
+    }
+
+    .btn-primary {
+      background: var(--accent);
+      color: #fff;
+      border: none;
+      border-radius: 999px;
+      padding: 0.7rem 1.4rem;
+      font-size: 0.95rem;
+      font-weight: 600;
+      cursor: pointer;
+      box-shadow: 0 0 0 1px #ffffff11, 0 12px 30px #000000aa;
+    }
+
+    .btn-primary:hover {
+      filter: brightness(1.08);
+    }
+
+    .social-list {
+      display: flex;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .social-tag {
+      font-size: 0.8rem;
+      padding: 0.35rem 0.8rem;
+      border-radius: 999px;
+      border: 1px solid #28324a;
+      background: #151b2b;
+      color: var(--muted);
+    }
+
+    .hero-photo {
+      border-radius: 18px;
+      overflow: hidden;
+      background: radial-gradient(circle at 20% 0%, #1e88ff33, #0b1020);
+      border: 1px solid #28324a;
+      min-height: 260px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 1.5rem;
+    }
+
+    .hero-photo-placeholder {
+      text-align: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .hero-photo-placeholder span {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px dashed #3b4764;
+      font-size: 0.8rem;
+    }
+
+    section {
+      padding: 2rem 0 1.5rem;
+      border-bottom: 1px solid #222a3d;
+    }
+
+    section:last-of-type {
+      border-bottom: none;
+    }
+
+    section h2 {
+      font-size: 1.4rem;
+      margin-bottom: 0.5rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    section p.section-subtitle {
+      font-size: 0.9rem;
+      color: var(--muted);
+      margin-bottom: 1.25rem;
+    }
+
+    /* Highlights */
+    .video-wrapper {
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid #28324a;
+      background: #050814;
+      aspect-ratio: 16 / 9;
+    }
+
+    .video-wrapper iframe {
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    /* About + Stats */
+    .about-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 1.75rem;
+    }
+
+    @media (max-width: 800px) {
+      .about-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .about-card {
+      border-radius: 16px;
+      border: 1px solid #28324a;
+      background: #101628;
+      padding: 1.25rem;
+    }
+
+    .about-card h3 {
+      font-size: 1rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .about-photo {
+      border-radius: 12px;
+      overflow: hidden;
+      background: radial-gradient(circle at 0% 0%, #1e88ff33, #050814);
+      min-height: 200px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.9rem;
+    }
+
+    .about-photo span {
+      display: inline-block;
+      margin-top: 0.75rem;
+      padding: 0.35rem 0.9rem;
+      border-radius: 999px;
+      border: 1px dashed #3b4764;
+      font-size: 0.8rem;
+    }
+
+    .stats-list {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+      gap: 0.75rem;
+      margin-bottom: 1rem;
+    }
+
+    .stat-item {
+      padding: 0.6rem 0.75rem;
+      border-radius: 10px;
+      background: #151b2b;
+      border: 1px solid #28324a;
+      font-size: 0.85rem;
+    }
+
+    .stat-label {
+      color: var(--muted);
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .stat-value {
+      font-weight: 600;
+      margin-top: 0.15rem;
+    }
+
+    .about-quote {
+      font-size: 0.9rem;
+      color: var(--muted);
+      border-left: 3px solid var(--accent);
+      padding-left: 0.75rem;
+      margin-top: 0.5rem;
+    }
+
+    /* Stats & Athletics */
+    .stats-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .stats-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .stats-block {
+      border-radius: 16px;
+      border: 1px solid #28324a;
+      background: #101628;
+      padding: 1.25rem;
+    }
+
+    .stats-block h3 {
+      font-size: 0.95rem;
+      margin-bottom: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+    }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      padding: 0.4rem 0;
+      font-size: 0.9rem;
+      border-bottom: 1px solid #1c2336;
+    }
+
+    .metric-row:last-child {
+      border-bottom: none;
+    }
+
+    .metric-label {
+      color: var(--muted);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+    }
+
+    .metric-value {
+      font-weight: 600;
+    }
+
+    .resume-row {
+      margin-top: 1.25rem;
+      display: flex;
+      justify-content: flex-start;
+    }
+
+    .btn-outline {
+      border-radius: 999px;
+      padding: 0.6rem 1.3rem;
+      font-size: 0.9rem;
+      border: 1px solid var(--accent);
+      background: transparent;
+      color: var(--accent);
+      cursor: pointer;
+    }
+
+    .btn-outline:hover {
+      background: var(--accent-soft);
+    }
+
+    /* Awards */
+    .awards-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 1rem;
+    }
+
+    .award-card {
+      border-radius: 14px;
+      border: 1px solid #28324a;
+      background: #101628;
+      padding: 0.9rem 1rem;
+      font-size: 0.9rem;
+    }
+
+    .award-tag {
+      font-size: 0.75rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    .award-title {
+      font-weight: 600;
+    }
+
+    /* Upcoming games */
+    .schedule-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 3fr) minmax(0, 2fr);
+      gap: 1.5rem;
+      align-items: center;
+    }
+
+    @media (max-width: 800px) {
+      .schedule-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .next-game-card {
+      border-radius: 16px;
+      border: 1px solid #28324a;
+      background: #101628;
+      padding: 1.25rem;
+    }
+
+    .next-game-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.4rem;
+    }
+
+    .next-game-date {
+      font-size: 1.1rem;
+      font-weight: 600;
+    }
+
+    .next-game-opponent {
+      margin-top: 0.2rem;
+      font-size: 0.95rem;
+    }
+
+    .next-game-time {
+      margin-top: 0.2rem;
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    /* Gallery */
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 0.75rem;
+    }
+
+    .gallery-item {
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #28324a;
+      background: radial-gradient(circle at 0% 0%, #1e88ff33, #050814);
+      min-height: 140px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--muted);
+      font-size: 0.85rem;
+      text-align: center;
+      padding: 0.75rem;
+    }
+
+    /* Contact */
+    .contact-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 2fr) minmax(0, 3fr);
+      gap: 1.5rem;
+    }
+
+    @media (max-width: 800px) {
+      .contact-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .contact-info {
+      font-size: 0.9rem;
+      color: var(--muted);
+    }
+
+    .contact-info p {
+      margin-bottom: 0.4rem;
+    }
+
+    .contact-form {
+      border-radius: 16px;
+      border: 1px solid #28324a;
+      background: #101628;
+      padding: 1.25rem;
+    }
+
+    .form-row {
+      margin-bottom: 0.9rem;
+    }
+
+    label {
+      display: block;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      color: var(--muted);
+      margin-bottom: 0.25rem;
+    }
+
+    input,
+    textarea {
+      width: 100%;
+      border-radius: 10px;
+      border: 1px solid #28324a;
+      background: #050814;
+      color: var(--text);
+      padding: 0.55rem 0.7rem;
+      font-size: 0.9rem;
+    }
+
+    textarea {
+      min-height: 120px;
+      resize: vertical;
+    }
+
+    input:focus,
+    textarea:focus {
+      outline: 1px solid var(--accent);
+      border-color: var(--accent);
+    }
+
+    footer {
+      padding-top: 2rem;
+      font-size: 0.8rem;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    .footer-social {
+      margin-bottom: 0.5rem;
+      display: flex;
+      justify-content: center;
+      gap: 0.5rem;
+      flex-wrap: wrap;
+    }
+
+    .footer-social span {
+      font-size: 0.8rem;
+      padding: 0.25rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid #28324a;
+      background: #151b2b;
+    }
+  </style>
 </head>
-
 <body>
-<div class="page">
+  <div class="page">
+    <!-- HERO -->
+    <header class="hero">
+      <div class="hero-text">
+        <h1><span>Emma</span> Shipley</h1>
+        <div class="hero-sub">WR / C / DB / QB • Class of 2028 </div>
 
-  <!-- NAVIGATION -->
-  <nav class="navbar">
-    <div class="nav-brand">Emma Shipley</div>
+        <div class="hero-meta">
+          <div class="pill">Texas Sport Academy</div>
+          <div class="pill">GPA 3.8</div>
+          <div class="pill">Jersey #11</div>
+        </div>
 
-    <input type="checkbox" id="nav-toggle" class="nav-toggle">
-    <label for="nav-toggle" class="nav-toggle-label">&#9776;</label>
+        <div class="hero-actions">
+          <button class="btn-primary">
+            WATCH HIGHLIGHTS
+          </button>
+          <div class="social-list">
+            <a class="social-tag" href="https://instagram.com/eshipley11" target="_blank" rel="noopener">Instagram</a>
+            <a class="social-tag" href="https://youtube.com/" target="_blank" rel="noopener">YouTube</a>
+            <a class="social-tag" href="https://www.hudl.com/" target="_blank" rel="noopener">Hudl</a>
+            <a class="social-tag" href="https://twitter.com/" target="_blank" rel="noopener">Twitter / X</a>
+          </div>
+        </div>
+      </div>
 
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#highlights">Highlights</a></li>
-      <li><a href="#gallery">Gallery</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-  </nav>
+      <div class="hero-photo">
+        <div class="hero-photo-placeholder">
+          <img src="images/hero-placeholder.png" alt="Emma Shipley action photo">
+        </div>
+      </div>
+    </header>
 
-  <!-- HERO -->
-  <section class="hero">
-    <div>
-      <h1>Emma Shipley</h1>
-      <p>WR / DB • Class of 2026 • High School Flag Football<br>
-      Frisco North High School<br>
-      GPA 3.8 • Jersey #11</p>
+    <!-- HIGHLIGHTS -->
+    <section id="highlights">
+      <h2>Latest Highlights</h2>
+      <p class="section-subtitle">Top plays from the 2025–2026 flag football season. Updated regularly.</p>
 
-      <a class="btn-primary" href="#highlights">WATCH HIGHLIGHTS</a>
+      <div class="video-wrapper">
+        <!-- Replace src with your real YouTube highlight playlist or video -->
+        <iframe
+          src="https://www.youtube.com/embed/dQw4w9WgXcQ"
+          title="Emma Shipley Flag Football Highlights"
+          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+          allowfullscreen
+        ></iframe>
+      </div>
+    </section>
 
-      <p style="margin-top:1rem;">
-        <a href="https://instagram.com/eshipley11" target="_blank">Instagram</a> •
-        <a href="#" target="_blank">YouTube</a> •
-        <a href="#" target="_blank">Hudl</a> •
-        <a href="#" target="_blank">Twitter/X</a>
+    <!-- ABOUT + STATS -->
+    <section id="about">
+      <h2>About Me</h2>
+      <p class="section-subtitle">
+        Student-athlete focused on speed, discipline, and leadership—on the field and in the classroom.
       </p>
-    </div>
 
-    <div class="hero-photo">
-      <img src="images/hero-placeholder.png" alt="Emma Shipley action photo">
-    </div>
-  </section>
+      <div class="about-grid">
+        <div class="about-card">
+          <h3>Player Profile</h3>
+          <div class="about-photo">
+            <img class="about-photo" src="images/profile-placeholder.jpg" alt="Emma Shipley portrait">
+          </div>
+        </div>
 
-  <!-- HIGHLIGHTS -->
-  <section id="highlights">
-    <h2>Latest Highlights</h2>
-    <p>Top plays from the 2025–2026 season.</p>
+        <div class="about-card">
+          <h3>Quick Facts</h3>
+          <div class="stats-list">
+            <div class="stat-item">
+              <div class="stat-label">Height</div>
+              <div class="stat-value">5'7"</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Weight</div>
+              <div class="stat-value">135 lbs</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">School</div>
+              <div class="stat-value">Texas Sports Academy</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">GPA</div>
+              <div class="stat-value">3.8</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Positions</div>
+              <div class="stat-value">WR / C / DB / QB</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Jersey #</div>
+              <div class="stat-value">11</div>
+            </div>
+            <div class="stat-item">
+              <div class="stat-label">Contact</div>
+              <div class="stat-value">egship05@gmail.com</div>
+            </div>
+          </div>
 
-    <div class="video-wrapper">
-      <iframe width="100%" height="100%" 
-        src="https://www.youtube.com/embed/YOUR_VIDEO_ID"
-        frameborder="0"
-        allowfullscreen>
-      </iframe>
-    </div>
-  </section>
-
-  <!-- ABOUT -->
-  <section id="about">
-    <h2>About Emma</h2>
-
-    <div class="about-grid">
-      <div>
-        <p>Emma Shipley is a standout WR/DB known for her speed, field awareness, and competitive drive. She excels in man coverage, route running, and creating separation.</p>
+          <p class="about-quote">
+            “Dedicated student-athlete focused on speed, teamwork, and leadership. I love competing, learning, and
+            pushing myself to get better every season.”
+          </p>
+        </div>
       </div>
+    </section>
 
-      <div>
-        <img class="about-photo" src="images/profile-placeholder.jpg" alt="Emma Shipley portrait">
+    <!-- STATS & ATHLETICS -->
+    <section id="stats">
+      <h2>Stats & Athletics</h2>
+      <p class="section-subtitle">
+        Key performance numbers from the 2025 season and core athletic metrics for recruiting evaluation.
+      </p>
+
+      <div class="stats-grid">
+        <div class="stats-block">
+          <h3>2025 Season Stats</h3>
+          <div class="metric-row">
+            <div class="metric-label">Receptions</div>
+            <div class="metric-value">42</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label">Receiving Yards</div>
+            <div class="metric-value">680</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label">Touchdowns</div>
+            <div class="metric-value">12</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label">Flags Pulled</div>
+            <div class="metric-value">28</div>
+          </div>
+        </div>
+
+        <div class="stats-block">
+          <h3>Athletic Metrics</h3>
+          <div class="metric-row">
+            <div class="metric-label">40 Yard Dash</div>
+            <div class="metric-value">4.85 sec</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label">Vertical Jump</div>
+            <div class="metric-value">26 inches</div>
+          </div>
+          <div class="metric-row">
+            <div class="metric-label">Shuttle Time</div>
+            <div class="metric-value">4.42 sec</div>
+          </div>
+
+          <div class="resume-row">
+            <!-- Link this to a PDF resume hosted in the repo or on Cloudflare -->
+            <a class="btn-outline" href="#" target="_blank" rel="noopener">
+              Download Athlete Resume (PDF)
+            </a>
+          </div>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- STATS -->
-  <section id="stats">
-    <h2>Stats & Achievements</h2>
+    <!-- AWARDS -->
+    <section id="awards">
+      <h2>Awards & Achievements</h2>
+      <p class="section-subtitle">
+        Recognitions that highlight leadership, performance, and academic commitment.
+      </p>
 
-    <div class="stats-grid">
-      <div>
-        <p><strong>2025 Season:</strong><br>
-        32 receptions • 410 yards • 9 TDs</p>
+      <div class="awards-grid">
+        <div class="award-card">
+          <div class="award-tag">On-Field</div>
+          <div class="award-title">All-American Milltary Bowl 2026</div>
+          <div class="award-title">Stars and States 2026</div>
+          <div class="award-title">Select Bowl 2025</div>
+        </div>
+        <div class="award-card">
+          <div class="award-tag">Leadership</div>
+          <div class="award-title">Team Captain (2025–2026)</div>
+          <div class="award-title">Texas Fury DFW Black</div>
+        </div>
+        <div class="award-card">
+          <div class="award-tag">Team</div>
+          <div class="award-title">Tournament Champions – Spring Classic</div>
+        </div>
+        <div class="award-card">
+          <div class="award-tag">Academic</div>
+          <div class="award-title">Academic Honor Roll (Multiple Semesters)</div>
+        </div>
       </div>
+    </section>
 
-      <div>
-        <p><strong>Defense:</strong><br>
-        18 flags pulled • 4 INTs • 2 pick‑sixes</p>
+    <!-- UPCOMING GAMES -->
+    <section id="schedule">
+      <h2>Upcoming Games</h2>
+      <p class="section-subtitle">
+        Current season schedule and next matchup information. Livestream links can be added when available.
+      </p>
+
+      <div class="schedule-grid">
+        <div class="next-game-card">
+          <div class="next-game-label">Next Game</div>
+          <div class="next-game-date">Friday, Sept 12</div>
+          <div class="next-game-opponent">vs Riverview High School</div>
+          <div class="next-game-time">Kickoff at 7:00 PM • Home Field</div>
+        </div>
+
+        <div>
+          <button class="btn-outline">
+            View Full Season Schedule (PDF or Link)
+          </button>
+        </div>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- GALLERY -->
-  <section id="gallery">
-    <h2>Gallery</h2>
+    <!-- GALLERY -->
+    <section id="gallery">
+      <h2>Photo Gallery</h2>
+      <p class="section-subtitle">
+        Game action, training sessions, and team moments that capture Taylor’s style of play.
+      </p>
 
-    <div class="gallery-grid">
-      <img class="gallery-item" src="images/action1.jpg" alt="">
-      <img class="gallery-item" src="images/action2.jpg" alt="">
-      <img class="gallery-item" src="images/action3.jpg" alt="">
-      <img class="gallery-item" src="images/action4.jpg" alt="">
-    </div>
-  </section>
-
-  <!-- CONTACT -->
-  <section id="contact">
-    <h2>Contact</h2>
-
-    <div class="contact-grid">
-      <div>
-        <p>For recruiting inquiries:</p>
-        <p><strong>Email:</strong> emma.shipley.recruiting@example.com</p>
+      <div class="gallery-grid">
+        <div class="gallery-item">
+          <img class="gallery-item" src="images/action1.jpg" alt="">
+        </div>
+        <div class="gallery-item">
+          <img class="gallery-item" src="images/action2.jpg" alt="">
+        </div>
+        <div class="gallery-item">
+          <img class="gallery-item" src="images/action3.jpg" alt="">
+        </div>
+        <div class="gallery-item">
+          <img class="gallery-item" src="images/action4.jpg" alt="">
+        </div>
       </div>
+    </section>
 
-      <div>
-        <p>Follow Emma on social media for updates, highlights, and training clips.</p>
+    <!-- CONTACT -->
+    <section id="contact">
+      <h2>Contact</h2>
+      <p class="section-subtitle">
+        For recruiting inquiries, game film requests, or additional academic information, please use the contact details
+        below.
+      </p>
+
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p><strong>Player Email:</strong> egship05@gmail.com</p>
+          <p><strong>Coach Contact:</strong> TBD</p>
+          <p><strong>Location:</strong> Little Elm, Texas</p>
+          <p>
+            Emma is currently seeking opportunities to play at the collegiate level and is open to programs that value
+            both athletic performance and academic growth.
+          </p>
+        </div>
+
+        <form class="contact-form">
+          <div class="form-row">
+            <label for="name">Your Name</label>
+            <input id="name" type="text" name="name" placeholder="Coach or Recruiter Name" />
+          </div>
+          <div class="form-row">
+            <label for="school">Your School / Organization</label>
+            <input id="school" type="text" name="school" placeholder="School or Club Name" />
+          </div>
+          <div class="form-row">
+            <label for="message">Your Message</label>
+            <textarea id="message" name="message" placeholder="Share interest, questions, or request for more film."></textarea>
+          </div>
+          <button class="btn-primary" type="submit">
+            SEND MESSAGE (Static Form)
+          </button>
+        </form>
       </div>
-    </div>
-  </section>
+    </section>
 
-  <!-- FOOTER -->
-  <footer>
-    © 2026 Emma Shipley — Flag Football Recruiting Profile
-  </footer>
-
-</div>
+    <!-- FOOTER -->
+    <footer>
+      <div class="footer-social">
+        <span>Instagram</span>
+        <span>YouTube</span>
+        <!--<span>Hudl</span> -->
+        <span>Twitter / X</span>
+      </div>
+      <div>© 2026 Emma Shipley • All Rights Reserved</div>
+      <div>Static recruiting profile hosted on Cloudflare Pages / GitHub Pages.</div>
+    </footer>
+  </div>
 </body>
 </html>
